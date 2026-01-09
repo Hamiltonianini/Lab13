@@ -11,7 +11,7 @@ void showImage(const bool [][M]);
 
 int main()
 {
-    bool image[N][M] = {};
+    bool image[N][M] = {}; //N = row, M = column
     int s,x,y;
     do{
         showImage(image);
@@ -20,4 +20,35 @@ int main()
         updateImage(image,s,x,y);
     }while(s != 0 || x != 0 || y != 0);
     return 0;
+}
+
+void showImage(const bool image[30][70]){
+    for(int j = 0; j < M + 2; j++) cout << "-";
+    cout << endl;
+
+
+    for(int i=0;i<N;i++){
+        cout << "|";
+        for(int j=0;j<M;j++){
+            if(image[i][j]){
+                cout << "*";
+            }else{
+                cout << " ";
+            }
+        }
+        cout << "|" << endl;
+    }
+    for(int j = 0; j < M + 2; j++) cout << "-";
+    cout << endl;
+
+}
+
+void updateImage(bool image[][M],int s,int x,int y){
+    for(int i=0;i<N;i++){
+        for(int j=0;j<M;j++){
+            if(s-1 >= sqrt((i - x)*(i - x) + (j - y)*(j - y))){
+                image[i][j] = true;
+            }
+        }
+    }
 }
